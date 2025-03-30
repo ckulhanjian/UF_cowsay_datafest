@@ -40,23 +40,23 @@ cursor.execute("SHOW TABLES;")
 #
 # # Step 3: Insert Data into MariaDB Table
 # # Step 3: Insert Data into MariaDB Table
-# for index, row in df.iterrows():
-#     # Create your insert query with "INSERT IGNORE" to handle duplicates
-#     query = """
-#     INSERT IGNORE INTO temp (year, market, address, region, city, state, zip, CBD_suburban)
-#     VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
-#     """
-#     data = (
-#         row['year'], row['market'], row['address'], row['region'], row['city'], row['state'],
-#         row['zip'], row['CBD_suburban']
-#     )
-#
-#     try:
-#         print(f"Inserting data: {data}")  # Debugging the data
-#         cursor.execute(query, data)
-#     except Exception as e:
-#         print(f"Error inserting row {index}: {e}")
-#         continue  # Skip to the next row if error occurs
+for index, row in df.iterrows():
+    # Create your insert query with "INSERT IGNORE" to handle duplicates
+    query = """
+    INSERT IGNORE INTO temp (year, market, address, region, city, state, zip, CBD_suburban)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
+    """
+    data = (
+        row['year'], row['market'], row['address'], row['region'], row['city'], row['state'],
+        row['zip'], row['CBD_suburban']
+    )
+
+    try:
+        print(f"Inserting data: {data}")  # Debugging the data
+        cursor.execute(query, data)
+    except Exception as e:
+        print(f"Error inserting row {index}: {e}")
+        continue  # Skip to the next row if error occurs
 
 
 
